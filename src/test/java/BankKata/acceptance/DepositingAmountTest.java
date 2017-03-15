@@ -1,24 +1,37 @@
 package BankKata.acceptance;
 
-import org.junit.Ignore;
+import BankKata.Account;
+import com.googlecode.yatspec.junit.SpecRunner;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static org.junit.Assert.fail;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpecRunner.class)
 public class DepositingAmountTest {
-    @Ignore
+
+    private Account account = new Account();
+
     @Test
     public void aCustomerCanDepositASumOfMoneyIntoAnAccount() throws Exception {
-        //givenACustomer
-        //AndTheCustomerDeposits1000on9/3/17
-        //AndTheCustomerDeposits500on10/3/17
+        givenACustomerAccountWithBalanceOf100();
 
-        //whentheCustomerPrintsTheirBankStatement
+        whenTheCustomerMakesADepositOf50();
 
-        //thentheCustomerWillSee
-        //Date||Debit||Credit||Balance
-        //09/03/2017|| ||1000.00||1000.00
-        //10/03/2017|| ||500.00||1500.00
-        fail();
+        thenTheUpdatedAccountBalanceIs150();
     }
+
+    private void givenACustomerAccountWithBalanceOf100() {
+        account.deposit(100.0);
+    }
+
+    private void whenTheCustomerMakesADepositOf50() {
+        account.deposit(50.0);
+    }
+
+    private void thenTheUpdatedAccountBalanceIs150() {
+        assertThat(account.getBalance()).isEqualTo(150.0);
+    }
+
+
 }
