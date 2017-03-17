@@ -42,11 +42,13 @@ public class AccountTest {
         thenTheUpdatedAccountBalanceIs(91.87);
     }
 
-    @Ignore
     @Test
     public void depositingIntoAnAccountWithANegativeBalanceUpdatesTheBalanceByTheAmountDeposited() throws Exception {
-        //Need to be able to withdraw money first.
-        fail();
+       givenAnAccountWithBalance(-5.0);
+
+       whenTheCustomerDeposits(11.0);
+
+       thenTheUpdatedAccountBalanceIs(6.0);
     }
 
     @Test
@@ -92,7 +94,7 @@ public class AccountTest {
     }
 
     private void givenAnAccountWithBalance(double amount) {
-        account.deposit(amount);
+        account = new Account(amount);
     }
 
     // whens
