@@ -1,13 +1,11 @@
 package BankKata;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.hamcrest.CoreMatchers.isA;
-import static org.junit.Assert.fail;
+
 
 public class AccountTest {
     @Rule
@@ -34,21 +32,12 @@ public class AccountTest {
     }
 
     @Test
-    public void depositingAnAmountOfPoundsAndPenceIntoAnAccountUpdatesTheBalanceByTheCorrectAmount() throws Exception {
-        givenAnAccountWithBalance(59.73);
-
-        whenTheCustomerDeposits(32.14);
-
-        thenTheUpdatedAccountBalanceIs(91.87);
-    }
-
-    @Test
     public void depositingIntoAnAccountWithANegativeBalanceUpdatesTheBalanceByTheAmountDeposited() throws Exception {
        givenAnAccountWithBalance(-5.0);
 
-       whenTheCustomerDeposits(11.0);
+       whenTheCustomerDeposits(20.0);
 
-       thenTheUpdatedAccountBalanceIs(6.0);
+       thenTheUpdatedAccountBalanceIs(15.0);
     }
 
     @Test
@@ -70,22 +59,22 @@ public class AccountTest {
     }
 
     @Test
-    public void withdrawingAnAmountOfPoundsAndPenceFromAnAccountReducesTheBalanceByTheCorrectAmount() throws Exception {
-        givenAnAccountWithBalance(123.45);
-
-        whenTheCustomerWithdraws(67.89);
-
-        thenTheUpdatedAccountBalanceIs(55.56);
-    }
-
-    @Test
-    public void withdrawingAnAmountFromAnAccountWithInsufficientFundsThrowsInsufficientFundsException() throws Exception {
+    public void withdrawingAnAmountFromAnAccountWithInsufficientFundsThrowsException() throws Exception {
         expectedException.expect(InsufficientFundsException.class);
 
         givenAnEmptyAccount();
 
         whenTheCustomerWithdraws(10.0);
 
+    }
+
+    @Test
+    public void withdrawingAnAmountFromAnAccountWithANegativeBalanceThrowsException() throws Exception {
+        expectedException.expect(InsufficientFundsException.class);
+
+        givenAnAccountWithBalance(-5.0);
+
+        whenTheCustomerWithdraws(10.0);
     }
 
     // givens
