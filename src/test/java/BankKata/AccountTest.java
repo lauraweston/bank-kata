@@ -27,7 +27,14 @@ public class AccountTest {
         thenTheUpdatedAccountBalanceIs(150.0);
     }
 
-    //TODO: test for deposits of non-integer amounts
+    @Test
+    public void depositingAnAmountOfPoundsAndPenceIntoAnAccountUpdatesTheBalanceByTheCorrectAmount() throws Exception {
+        givenAnAccountWithBalance(59.73);
+
+        whenTheCustomerDeposits(32.14);
+
+        thenTheUpdatedAccountBalanceIs(91.87);
+    }
 
     @Ignore
     @Test
@@ -52,6 +59,15 @@ public class AccountTest {
         whenTheCustomerWithdraws(30.0);
 
         thenTheUpdatedAccountBalanceIs(70.0);
+    }
+
+    @Test
+    public void withdrawingAnAmountOfPoundsAndPenceFromAnAccountReducesTheBalanceByTheCorrectAmount() throws Exception {
+        givenAnAccountWithBalance(123.45);
+
+        whenTheCustomerWithdraws(67.89);
+
+        thenTheUpdatedAccountBalanceIs(55.56);
     }
 
     @Ignore
