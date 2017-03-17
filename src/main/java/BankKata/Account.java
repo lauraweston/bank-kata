@@ -11,7 +11,15 @@ public class Account {
         return balance;
     }
 
-    public void withdraw(double amount) {
-        balance -= amount;
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if (isValidWithdrawal(amount)) {
+            balance -= amount;
+        } else {
+            throw new InsufficientFundsException();
+        }
+    }
+
+    private boolean isValidWithdrawal(double amount) {
+        return amount <= balance;
     }
 }

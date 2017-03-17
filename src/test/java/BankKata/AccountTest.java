@@ -1,12 +1,18 @@
 package BankKata;
 
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.fail;
 
 public class AccountTest {
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     private Account account = new Account();
 
     @Test
@@ -70,10 +76,14 @@ public class AccountTest {
         thenTheUpdatedAccountBalanceIs(55.56);
     }
 
-    @Ignore
     @Test
     public void withdrawingAnAmountFromAnAccountWithInsufficientFundsThrowsInsufficientFundsException() throws Exception {
-        fail();
+        expectedException.expect(InsufficientFundsException.class);
+
+        givenAnEmptyAccount();
+
+        whenTheCustomerWithdraws(10.0);
+
     }
 
     // givens
@@ -90,7 +100,7 @@ public class AccountTest {
         account.deposit(amount);
     }
 
-    private void whenTheCustomerWithdraws(double amount) {
+    private void whenTheCustomerWithdraws(double amount) throws InsufficientFundsException {
         account.withdraw(amount);
     }
 

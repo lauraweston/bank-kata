@@ -1,6 +1,7 @@
 package BankKata.acceptance;
 
 import BankKata.Account;
+import BankKata.InsufficientFundsException;
 import com.googlecode.yatspec.junit.SpecRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ public class WithdrawalsTest {
         account.deposit(amount);
     }
 
-    private void whenTheCustomerWithdraws(double amount) {
+    private void whenTheCustomerWithdraws(double amount) throws InsufficientFundsException {
         account.withdraw(amount);
     }
 
