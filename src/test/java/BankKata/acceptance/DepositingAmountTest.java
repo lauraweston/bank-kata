@@ -14,14 +14,14 @@ public class DepositingAmountTest {
 
     @Test
     public void aCustomerCanDepositASumOfMoneyIntoAnAccount() throws Exception {
-        givenACustomerAccountWithBalanceOf100();
+        givenACustomerAccountWithABalanceOf100();
 
         whenTheCustomerMakesADepositOf50();
 
         thenTheUpdatedAccountBalanceIs150();
     }
 
-    private void givenACustomerAccountWithBalanceOf100() {
+    private void givenACustomerAccountWithABalanceOf100() {
         account.deposit(100.0);
     }
 

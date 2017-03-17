@@ -11,7 +11,4 @@ public class Account {
         return balance;
     }
 
-    public String printBalance() {
-    return "";
-    }
 }
