@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpecRunner.class)
-public class DepositingAmountTest {
+public class DepositsTest {
 
     private Account account = new Account();
 

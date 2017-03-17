@@ -27,10 +27,36 @@ public class AccountTest {
         thenTheUpdatedAccountBalanceIs(150.0);
     }
 
+    //TODO: test for deposits of non-integer amounts
+
     @Ignore
     @Test
     public void depositingIntoAnAccountWithANegativeBalanceUpdatesTheBalanceByTheAmountDeposited() throws Exception {
         //Need to be able to withdraw money first.
+        fail();
+    }
+
+    @Test
+    public void withdrawingTheFullAmountFromAnAccountReducesTheBalanceToZero() throws Exception {
+        givenAnAccountWithBalance(100.0);
+
+        whenTheCustomerWithdraws(100.0);
+
+        thenTheUpdatedAccountBalanceIs(0.0);
+    }
+
+    @Test
+    public void withdrawingAnAmountFromAnAccountWithSufficientFundsReducesTheBalanceByTheAmount() throws Exception {
+        givenAnAccountWithBalance(100.0);
+
+        whenTheCustomerWithdraws(30.0);
+
+        thenTheUpdatedAccountBalanceIs(70.0);
+    }
+
+    @Ignore
+    @Test
+    public void withdrawingAnAmountFromAnAccountWithInsufficientFundsThrowsInsufficientFundsException() throws Exception {
         fail();
     }
 
@@ -45,7 +71,11 @@ public class AccountTest {
 
     // whens
     private void whenTheCustomerDeposits(double amount) {
-        account.deposit(100.0);
+        account.deposit(amount);
+    }
+
+    private void whenTheCustomerWithdraws(double amount) {
+        account.withdraw(amount);
     }
 
     // thens
