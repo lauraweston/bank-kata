@@ -13,24 +13,24 @@ public class DepositsTest {
     private Account account = new Account();
 
     @Test
-    public void aCustomerCanDepositASumOfMoneyIntoAnAccount() throws Exception {
-        givenACustomerAccountWithABalanceOf100();
+    public void aCustomerCanDepositAnAmountIntoAnAccount() throws Exception {
+        givenACustomerAccountWithABalanceOf(100.0);
 
-        whenTheCustomerMakesADepositOf50();
+        whenTheCustomerMakesADepositOf(50.0);
 
-        thenTheUpdatedAccountBalanceIs150();
+        thenTheUpdatedAccountBalanceIs(150.0);
     }
 
-    private void givenACustomerAccountWithABalanceOf100() {
-        account.deposit(100.0);
+    private void givenACustomerAccountWithABalanceOf(double balance) {
+        account.deposit(balance);
     }
 
-    private void whenTheCustomerMakesADepositOf50() {
-        account.deposit(50.0);
+    private void whenTheCustomerMakesADepositOf(double amount) {
+        account.deposit(amount);
     }
 
-    private void thenTheUpdatedAccountBalanceIs150() {
-        assertThat(account.getBalance()).isEqualTo(150.0);
+    private void thenTheUpdatedAccountBalanceIs(double amount) {
+        assertThat(account.getBalance()).isEqualTo(amount);
     }
 
 

@@ -13,14 +13,14 @@ public class WithdrawalsTest {
 
     @Test
     public void aCustomerCanWithdrawAnAmountFromAnAccountWithSufficientFunds() throws Exception {
-        givenAnCustomerAccountWithBalance(100.0);
+        givenACustomerAccountWithABalanceOf(100.0);
 
         whenTheCustomerWithdraws(30.0);
 
         thenTheUpdatedAccountBalanceIs(70.0);
     }
 
-    private void givenAnCustomerAccountWithBalance(double amount) {
+    private void givenACustomerAccountWithABalanceOf(double amount) {
         account.deposit(amount);
     }
 
