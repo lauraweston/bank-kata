@@ -11,7 +11,7 @@ public class AccountTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    private Account account = new Account();
+    private Account account;
 
     @Test
     public void depositingIntoAnEmptyAccountUpdatesTheBalanceToTheAmountDeposited() throws Exception {

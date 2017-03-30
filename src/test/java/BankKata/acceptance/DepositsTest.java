@@ -1,8 +1,8 @@
 package BankKata.acceptance;
 
 import BankKata.Account;
+import BankKata.NoCoinsAllowedException;
 import com.googlecode.yatspec.junit.SpecRunner;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -26,10 +26,9 @@ public class DepositsTest {
         thenTheUpdatedAccountBalanceIs(150.0);
     }
 
-    @Ignore
     @Test
     public void aCustomerCanOnlyDepositNotesIntoAnAccount() throws Exception {
-        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expect(NoCoinsAllowedException.class);
 
         givenACustomerAccountWithABalanceOf(0.0);
 

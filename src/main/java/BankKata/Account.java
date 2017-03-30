@@ -11,7 +11,10 @@ public class Account {
         this.balance = amount;
     }
 
-    public void deposit(double amount) {
+    public void deposit(double amount) throws NoCoinsAllowedException {
+        if (!isValidDepositAmount(amount)) {
+            throw new NoCoinsAllowedException();
+        }
         this.balance += amount;
     }
 
@@ -25,6 +28,10 @@ public class Account {
         } else {
             throw new InsufficientFundsException();
         }
+    }
+
+    private boolean isValidDepositAmount(double amount) {
+        return amount % 5 == 0;
     }
 
     private boolean isValidWithdrawal(double amount) {
